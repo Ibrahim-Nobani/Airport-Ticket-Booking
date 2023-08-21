@@ -25,9 +25,11 @@ public class BookingService : IBookingService
         }
 
         decimal selectedClassPrice = flight.ClassPrices[flightClass];
+        var idGenerator = new IDGenerator();
 
         Booking newBooking = new Booking
         {
+            BookingId = idGenerator.GenerateId(),
             FlightId = flightId,
             PassengerId = passengerId,
             Class = flightClass,

@@ -7,7 +7,7 @@ public class FlightSearch : IFlightSearch
         _flightDataProvider = flightDataProvider;
     }
 
-    public List<Flight> SearchFlights(SearchParameters parameters)
+    public List<Flight> SearchFlights(FlightFilterParameters parameters)
     {
         List<Flight> allFlights = _flightDataProvider.GetAllFlights();
 

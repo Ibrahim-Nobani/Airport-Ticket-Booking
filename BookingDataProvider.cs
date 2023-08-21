@@ -30,5 +30,9 @@ public class BookingDataProvider : IBookingDataProvider
             _bookings[index] = newBooking;
         }
     }
+    public List<Booking> GetAllBookings()
+    {
+        return _bookings;
+    }
 
 }

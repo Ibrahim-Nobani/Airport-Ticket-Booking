@@ -1,4 +1,4 @@
 public interface IFlightSearch
 {
-    List<Flight> SearchFlights(SearchParameters parameters);
+    List<Flight> SearchFlights(FlightFilterParameters parameters);
 }

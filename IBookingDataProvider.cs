@@ -5,4 +5,5 @@ public interface IBookingDataProvider
     void UpdateBooking(int bookingId, Booking updatedBooking);
     Booking GetBookingById(int bookingId);
     List<Booking> GetBookingsForPassenger(int passengerId);
+    List<Booking> GetAllBookings ();
 }
