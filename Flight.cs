@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 public class Flight
 {
     [Required(ErrorMessage = "Flight ID is Required.")]
-   // [Unique(flightDataProvider, ErrorMessage = "Not Unique")]
     public int FlightId { get; set; }
 
     [Required(ErrorMessage = "Departure country is required.")]
@@ -14,7 +13,7 @@ public class Flight
 
     [Required(ErrorMessage = "Departure date is required.")]
     [DataType(DataType.DateTime)]
-    //[FutureDate(ErrorMessage = "Departure date must be in the future.")]
+    [FutureDate(ErrorMessage = "Departure date must be in the future.")]
     public DateTime DepartureDate { get; set; }
 
     [Required(ErrorMessage = "Departure airport is required.")]
@@ -23,5 +22,6 @@ public class Flight
     [Required(ErrorMessage = "Arrival airport is required.")]
     public string ArrivalAirport { get; set; }
 
+    [FlightPricesValidation(ErrorMessage = "Prices are required.")]
     public Dictionary<FlightClass, decimal> ClassPrices { get; set; } = new Dictionary<FlightClass, decimal>();
 }

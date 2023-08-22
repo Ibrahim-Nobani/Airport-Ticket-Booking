@@ -29,7 +29,7 @@ public class BookingService : IBookingService
 
         Booking newBooking = new Booking
         {
-            BookingId = idGenerator.GenerateId(),
+            BookingId = idGenerator.generateId(),
             FlightId = flightId,
             PassengerId = passengerId,
             Class = flightClass,

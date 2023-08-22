@@ -16,19 +16,21 @@ public class DataValidation
 
         foreach (List<string> fields in _csvData)
         {
+            IdValidator idValidator = new IdValidator(_flightDataProvider);
             Flight flight = CreateFlightFromCsv(fields);
             var context = new ValidationContext(flight, serviceProvider: null, items: null);
             var results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(flight, context, results, true);
+            bool isValid = Validator.TryValidateObject(flight, context, results, true) && idValidator.IdValidate(flight.FlightId);
 
             if (!isValid)
             {
                 validationResults.AddRange(results);
                 System.Console.WriteLine($"{flight.FlightId} is not valid!");
-                break;
             }
-
-            _flightDataProvider.AddFlight(flight);
+            else
+            {
+                _flightDataProvider.AddFlight(flight);
+            }
         }
         validationResults.ForEach(validationResult => System.Console.WriteLine(validationResult.ErrorMessage));
         return validationResults;
