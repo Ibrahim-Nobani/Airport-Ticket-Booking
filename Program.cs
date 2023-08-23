@@ -27,8 +27,37 @@ class Program
                 new ManagerOptionFilterBooking(bookingFilter),
                 new ManagerOptionViewFlights(flightDataProvider),
             };
-        ManagerMenu();
-        PassengerMenu();
+
+        DisplayMainMenu();
+
+        void DisplayMainMenu()
+        {
+            while (true)
+            {
+                Console.WriteLine("Welcome to the Airport Ticket Booking System!");
+                Console.WriteLine("1. Passenger Menu");
+                Console.WriteLine("2. Manager Menu");
+                Console.WriteLine("3. Exit");
+                Console.WriteLine("Enter your choice: ");
+                int choice = int.Parse(Console.ReadLine());
+
+                switch (choice)
+                {
+                    case 1:
+                        PassengerMenu();
+                        break;
+                    case 2:
+                        ManagerMenu();
+                        break;
+                    case 3:
+                        Console.WriteLine("Exiting the program. Goodbye!");
+                        return;
+                    default:
+                        Console.WriteLine("Invalid choice. Please try again.");
+                        break;
+                }
+            }
+        }
 
         void PassengerMenu()
         {
@@ -44,14 +73,14 @@ class Program
                 Console.Write("Enter your choice: ");
                 int choice;
 
-                if (!int.TryParse(Console.ReadLine(), out choice) || choice > (int)ConsoleOption.Exit)
+                if (!int.TryParse(Console.ReadLine(), out choice) || choice > (int)PassengerConsoleOption.Exit)
                 {
                     Console.WriteLine("Invalid input. Please enter a number.");
                     continue;
                 }
 
-                var option = (ConsoleOption)choice;
-                if (option == ConsoleOption.Exit)
+                var option = (PassengerConsoleOption)choice;
+                if (option == PassengerConsoleOption.Exit)
                 {
                     Console.WriteLine("Exiting...");
                     return;
@@ -73,14 +102,14 @@ class Program
                 Console.Write("Enter your choice: ");
                 int choice;
 
-                if (!int.TryParse(Console.ReadLine(), out choice) || choice > (int)ManagerOption.Exit)
+                if (!int.TryParse(Console.ReadLine(), out choice) || choice > (int)ManagerConsoleOption.Exit)
                 {
                     Console.WriteLine("Invalid input. Please enter a valid number.");
                     continue;
                 }
 
-                var option = (ManagerOption)choice;
-                if (option == ManagerOption.Exit)
+                var option = (ManagerConsoleOption)choice;
+                if (option == ManagerConsoleOption.Exit)
                 {
                     Console.WriteLine("Exiting...");
                     return;
@@ -91,7 +120,7 @@ class Program
             }
         }
     }
-    public enum ConsoleOption
+    public enum PassengerConsoleOption
     {
         SearchAndDisplayFlights = 1,
         BookAndDisplayBooking = 2,
@@ -100,7 +129,7 @@ class Program
         CancelBooking = 5,
         Exit = 6
     }
-    public enum ManagerOption
+    public enum ManagerConsoleOption
     {
         ParseFlightData = 1,
         FilterBooking = 2,
