@@ -30,7 +30,6 @@ class Menu
     }
     public static void DisplayPassengerMenu()
     {
-
         Console.WriteLine("Passenger Menu");
         Console.WriteLine("1. Search Flights");
         Console.WriteLine("2. Book Flight");
