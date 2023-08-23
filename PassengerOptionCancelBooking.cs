@@ -7,7 +7,9 @@ class PassengerOptionCancelBooking : IPassengerOptions
     }
     public void Execute()
     {
+        Console.WriteLine("Enter the booking ID you would like to cancel: ");
+        int bookingID = int.Parse(Console.ReadLine());
         // provide the booking ID.
-        _bookingService.CancelBooking(3);
+        _bookingService.CancelBooking(bookingID);
     }
 }

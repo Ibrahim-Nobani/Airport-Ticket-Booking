@@ -7,6 +7,17 @@ class PassengerOptionModifyBooking : IPassengerOptions
     }
     public void Execute()
     {
-        _bookingService.ModifyBooking(3, FlightClass.FirstClass);
+        Console.WriteLine("Enter the booking ID you would like to modify: ");
+        int bookingId = int.Parse(Console.ReadLine());
+        Console.Write("Enter the flight class: ");
+        string input = Console.ReadLine();
+
+        FlightClass classToBook;
+
+        if (!Enum.TryParse(input, out classToBook))
+        {
+            Console.WriteLine("Invalid input.");
+        }
+        _bookingService.ModifyBooking(bookingId, FlightClass.FirstClass);
     }
 }
