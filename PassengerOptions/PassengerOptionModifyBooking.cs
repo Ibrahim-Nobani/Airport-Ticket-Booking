@@ -11,18 +11,12 @@ namespace AirportBooking.PassengerOptions
         }
         public void Execute()
         {
-            Console.WriteLine("Enter the booking ID you would like to modify: ");
-            int bookingId = int.Parse(Console.ReadLine());
-            Console.Write("Enter the flight class: ");
-            string input = Console.ReadLine();
-
-            FlightClass classToBook;
-
-            if (!Enum.TryParse(input, out classToBook))
-            {
-                Console.WriteLine("Invalid input.");
-            }
-            _bookingService.ModifyBooking(bookingId, FlightClass.FirstClass);
+            int bookingId = ReadInputHelper.GetIntInput("Enter the Booking ID: ");
+            Console.Write("You can edit the flight class");
+            FlightClass classToBook = ReadInputHelper.GetEnumInput<FlightClass>("Enter the flight class: ");
+            bool isBookingModified = _bookingService.ModifyBooking(bookingId, classToBook);
+            string modifyBookingResultMessage = isBookingModified ? "The Booking has been Modified!" : "Booking Modification Failed";
+            Console.WriteLine($"{modifyBookingResultMessage}");
         }
     }
 }

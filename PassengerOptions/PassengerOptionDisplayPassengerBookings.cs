@@ -12,9 +12,8 @@ namespace AirportBooking.PassengerOptions
 
         public void Execute()
         {
-            Console.WriteLine("Enter the passenger ID: ");
-            int passengerId = int.Parse(Console.ReadLine());
-            List<Booking> passengerBookings = _bookingService.GetPassengerBookings(passengerId);
+            int passengerID = ReadInputHelper.GetIntInput("Enter the Passenger ID: ");
+            List<Booking> passengerBookings = _bookingService.GetPassengerBookings(passengerID);
             Console.WriteLine($"Passenger's bookings:");
             passengerBookings.ForEach(booking => Console.WriteLine($"Booking {booking.BookingId}: Flight {booking.FlightId}, Class: {booking.Class} {booking.Price}"));
         }

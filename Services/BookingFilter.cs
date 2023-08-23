@@ -16,8 +16,6 @@ namespace AirportBooking.Services
         public List<Booking> FilterBookings(BookingFilterParameters parameters)
         {
             List<Booking> allBookings = _bookingDataProvider.GetAllBookings();
-            List<Flight> allFlights = _flightDataProvider.GetAllFlights();
-
             List<Booking> filteredBookings = allBookings;
 
             if (parameters.FlightId.HasValue)
@@ -33,6 +31,9 @@ namespace AirportBooking.Services
                     .Where(booking => booking.Price >= parameters.MinPrice.Value)
                     .ToList();
             }
+
+            List<Flight> allFlights = _flightDataProvider.GetAllFlights();
+            
             if (!string.IsNullOrEmpty(parameters.DepartureAirport))
             {
                 allFlights = allFlights.Where(flight => flight.DepartureAirport == parameters.DepartureAirport).ToList();

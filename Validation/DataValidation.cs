@@ -15,7 +15,6 @@ namespace AirportBooking.Validation
         public List<ValidationResult> ValidateCsv()
         {
             List<ValidationResult> validationResults = new List<ValidationResult>();
-            //List<List<string>> csvData = ParseCsv(csvText);
 
             foreach (List<string> fields in _csvData)
             {

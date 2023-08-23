@@ -23,9 +23,9 @@ namespace AirportBooking.Validation
             {
                 List<string> fields = line.Split(_delimiter).ToList();
                 rows.Add(fields);
-                System.Console.WriteLine($"{string.Join(", ", fields)}");
+                Console.WriteLine($"{string.Join(", ", fields)}");
             }
-
+            
             return rows;
         }
     }

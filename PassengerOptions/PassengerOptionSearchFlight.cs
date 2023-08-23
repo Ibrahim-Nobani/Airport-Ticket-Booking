@@ -13,7 +13,6 @@ namespace AirportBooking.PassengerOptions
         {
             var searchParameters = new FlightFilterParameters
             {
-                // MaxPrice = 1500,
                 DepartureCountry = "USA",
                 DestinationCountry = "England"
             };

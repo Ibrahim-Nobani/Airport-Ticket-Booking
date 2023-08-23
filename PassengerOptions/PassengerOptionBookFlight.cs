@@ -11,25 +11,15 @@ namespace AirportBooking.PassengerOptions
         }
         public void Execute()
         {
-            Console.WriteLine("Enter the flight ID: ");
-            int flightIdToBook = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter the passenger ID: ");
-            int passengerId = int.Parse(Console.ReadLine());
-            //int flightIdToBook = 1;
-            //FlightClass classToBook = FlightClass.Economy;
-            Console.Write("Enter the flight class: ");
-            string input = Console.ReadLine();
+            int flightIdToBook = ReadInputHelper.GetIntInput("Enter the flight ID: ");
+            int passengerId = ReadInputHelper.GetIntInput("Enter the passenger ID: ");
+            FlightClass classToBook = ReadInputHelper.GetEnumInput<FlightClass>("Enter the flight class: ");
 
-            FlightClass classToBook;
+            bool isBookingSuccessful = _bookingService.BookFlight(flightIdToBook, passengerId, classToBook);
 
-            if (!Enum.TryParse(input, out classToBook))
-            {
-                Console.WriteLine("Invalid input.");
-            }
-            //int passengerId = 1;
-            _bookingService.BookFlight(flightIdToBook, passengerId, classToBook);
-            // _bookingService.BookFlight(flightIdToBook, passengerId, classToBook);
+            string bookingResultMessage = isBookingSuccessful ? "Booking successful" : "Booking failed";
+            Console.WriteLine($"{bookingResultMessage}");
         }
     }
 }

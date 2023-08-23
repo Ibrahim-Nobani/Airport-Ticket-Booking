@@ -21,11 +21,7 @@ namespace AirportBooking.Validation
         }
         public bool IsFlightIdPositive(int flightId)
         {
-            if (flightId < 0)
-            {
-                return false;
-            }
-            return true;
+            return flightId >= 0;
         }
     }
 }

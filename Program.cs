@@ -44,8 +44,7 @@ class Program
                 Console.WriteLine("1. Passenger Menu");
                 Console.WriteLine("2. Manager Menu");
                 Console.WriteLine("3. Exit");
-                Console.WriteLine("Enter your choice: ");
-                int choice = int.Parse(Console.ReadLine());
+                int choice = ReadInputHelper.GetIntInput("Enter your choice: ");
 
                 switch (choice)
                 {

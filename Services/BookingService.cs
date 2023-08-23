@@ -13,19 +13,19 @@ namespace AirportBooking.Services
             _flightDataProvider = flightDataProvider;
         }
 
-        public void BookFlight(int flightId, int passengerId, FlightClass flightClass)
+        public bool BookFlight(int flightId, int passengerId, FlightClass flightClass)
         {
             Flight flight = _flightDataProvider.GetFlightById(flightId);
             if (flight == null)
             {
                 Console.WriteLine("Flight not found.");
-                return;
+                return false;
             }
 
             if (!flight.ClassPrices.ContainsKey(flightClass))
             {
                 Console.WriteLine("Invalid class selected.");
-                return;
+                return false;
             }
 
             decimal selectedClassPrice = flight.ClassPrices[flightClass];
@@ -42,44 +42,39 @@ namespace AirportBooking.Services
             };
 
             _bookingDataProvider.AddBooking(newBooking);
-
-            Console.WriteLine("Booking successful!");
+            return true;
         }
 
-        public void CancelBooking(int bookingId)
+        public bool CancelBooking(int bookingId)
         {
             Booking booking = _bookingDataProvider.GetBookingById(bookingId);
             if (booking == null)
             {
-                Console.WriteLine("Booking not found.");
-                return;
+                return false;
             }
 
             _bookingDataProvider.RemoveBooking(bookingId);
 
-            Console.WriteLine("Booking canceled.");
+            return true;
         }
 
-        public void ModifyBooking(int bookingId, FlightClass newFlightClass)
+        public bool ModifyBooking(int bookingId, FlightClass newFlightClass)
         {
             Booking booking = _bookingDataProvider.GetBookingById(bookingId);
             if (booking == null)
             {
-                Console.WriteLine("Booking not found.");
-                return;
+                return false;
             }
 
             Flight flight = _flightDataProvider.GetFlightById(booking.FlightId);
             if (flight == null)
             {
-                Console.WriteLine("Flight not found.");
-                return;
+                return false;
             }
 
             if (!flight.ClassPrices.ContainsKey(newFlightClass))
             {
-                Console.WriteLine("Invalid class selected.");
-                return;
+                return false;
             }
 
             decimal newClassPrice = flight.ClassPrices[newFlightClass];
@@ -88,7 +83,7 @@ namespace AirportBooking.Services
 
             _bookingDataProvider.UpdateBooking(bookingId, booking);
 
-            Console.WriteLine("Booking modified.");
+            return true;
         }
 
         public List<Booking> GetPassengerBookings(int passengerId)

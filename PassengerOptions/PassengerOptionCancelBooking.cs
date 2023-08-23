@@ -10,10 +10,10 @@ namespace AirportBooking.PassengerOptions
         }
         public void Execute()
         {
-            Console.WriteLine("Enter the booking ID you would like to cancel: ");
-            int bookingID = int.Parse(Console.ReadLine());
-            // provide the booking ID.
-            _bookingService.CancelBooking(bookingID);
+            int bookingID = ReadInputHelper.GetIntInput("Enter the Booking ID: ");
+            bool isBookingCancelled = _bookingService.CancelBooking(bookingID);
+            string cancelBookingResultMessage = isBookingCancelled ? "The Booking has been canceled" : "Booking Cancellation Failed, Booking does not exist!";
+            Console.WriteLine($"{cancelBookingResultMessage}");
         }
     }
 }
