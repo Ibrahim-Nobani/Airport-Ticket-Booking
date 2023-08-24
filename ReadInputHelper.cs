@@ -27,9 +27,10 @@ public class ReadInputHelper
     public static string GetStringInput(string message)
     {
         Console.Write(message);
-        string result = Console.ReadLine();
-        return result;
+        string? result = Console.ReadLine();
+        return result ?? string.Empty;
     }
+
     public static decimal GetDecimalInput(string message)
     {
         Console.Write(message);

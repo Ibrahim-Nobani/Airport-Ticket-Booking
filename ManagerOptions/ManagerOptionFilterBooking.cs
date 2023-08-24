@@ -2,7 +2,6 @@ using AirportBooking.Interfaces;
 using AirportBooking.Models;
 namespace AirportBooking.ManagerOptions
 {
-
     public class ManagerOptionFilterBooking : IManagerOptions
     {
         private IBookingFilter _bookingFilter;
